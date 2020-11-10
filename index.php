@@ -15,7 +15,7 @@ ob_start(); // Je démarre le buffer de sortie : les données à afficher sont s
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ma super application</title>
+    <title>Mahora Project</title>
     <link rel="icon" type="image/png" href="./style/img/logo-mahora.png" />
 
     <!-- Ma feuille de style à moi -->
@@ -24,14 +24,6 @@ ob_start(); // Je démarre le buffer de sortie : les données à afficher sont s
 </head>
 
 <body>
-    <?php
-        if (isset($_SESSION['info'])) {
-            echo "<div>
-            <strong>Information : </strong> " . $_SESSION['info'] . "</div>";
-            unset($_SESSION['info']);
-        }
-    ?>
-
     <header>
         <div>
             <img class="logo-mahora" src="./style/img/logo-mahora.png" alt="">
@@ -46,20 +38,29 @@ ob_start(); // Je démarre le buffer de sortie : les données à afficher sont s
             <img src="./style/img/notification.png" alt="">
         </div>
     </header>
-    <nav>
-    <ul>
-        <li><a href="index.php?action=accueil">Va voir la page 2</a></li>
-
-        <?php
-        if (isset($_SESSION['id'])) {
-            echo "<li>Bonjour " . $_SESSION['login'] . " <a href='index.php?action=deconnexion'>Deconnexion</a></li>";
-        } else {
-            echo "<li><a href='index.php?action=login'>Login</a></li>";
-        }
-        ?>
-    </ul>
-    </nav>
     <?php
+        if (isset($_SESSION['info'])) {
+            echo "<div>
+            <strong>Information : </strong> " . $_SESSION['info'] . "</div>";
+            unset($_SESSION['info']);
+        }
+    ?>
+
+    
+    <nav>
+        <ul>
+            <li><a href="index.php?action=accueil">Va voir la page 2</a></li>
+
+            <?php
+            if (isset($_SESSION['id'])) {
+                echo "<li>Bonjour " . $_SESSION['login'] . " <a href='index.php?action=deconnexion'>Deconnexion</a></li>";
+            } else {
+                echo "<li><a href='index.php?action=login'>Login</a></li>";
+            }
+            ?>
+        </ul>
+    </nav>
+        <?php
             // Quelle est l'action à faire ?
             if (isset($_GET["action"])) {
                 $action = $_GET["action"];
@@ -75,6 +76,6 @@ ob_start(); // Je démarre le buffer de sortie : les données à afficher sont s
             }
 
             ob_end_flush(); // Je ferme le buffer, je vide la mémoire et affiche tout ce qui doit l'être
-            ?>
+        ?>
 </body>
 </html>
