@@ -32,9 +32,15 @@ ob_start(); // Je démarre le buffer de sortie : les données à afficher sont s
         }
     ?>
 
-    <header>
-        <img class="logo-mahora" src="./style/img/logo-mahora.png" alt="">
-        <h2>ahora</h2>
+    <header>    
+        <div class="search">
+            <img src="./style/img/search.png" alt="">
+            <input type="text" placeholder="Rechercher">
+        </div>
+
+        <div class="notification">
+            <img src="./style/img/notification.png" alt="">
+        </div>
     </header>
     <nav>
     <ul>
