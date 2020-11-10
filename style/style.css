@@ -1,7 +1,6 @@
 body{
     margin: 0;
     padding: 0;
-    display: flex;
     background-color: #EBECF7;
 }
 
@@ -13,10 +12,10 @@ p{
     font-family: helvetica, sans-serif;
 }
 
-/* Page index.php */
+/* Header */
 header{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     margin: 20px 0 20px 40px;
 }
@@ -25,14 +24,8 @@ header h2{
     color: #6381E4;
 }
 
-.logo-mahora{
+logo-mahora{
     width: 80px;
-}
-
-
-header > div:nth-child(1){
-    display: flex;
-    align-items: center;
 }
 
 .search{
