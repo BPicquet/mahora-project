@@ -1,0 +1,79 @@
+body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: #EBECF7;
+}
+
+h1, h2, a{
+    font-family: "Open Sans", sans-serif;
+}
+
+p{
+    font-family: helvetica, sans-serif;
+}
+
+/* Page index.php */
+header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px 0 20px 40px;
+}
+
+header h2{
+    color: #6381E4;
+}
+
+.logo-mahora{
+    width: 80px;
+}
+
+
+header > div:nth-child(1){
+    display: flex;
+    align-items: center;
+}
+
+.search{
+    background-color: white;
+    border-radius: 10px;
+    width: 400px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search > input{
+    border: none;
+    background: none;
+    height: 30px;
+    width: 320px;
+    margin-left: 20px;
+    margin-top: 5px;
+    font-size: 1.2rem;
+}
+
+.search > input:focus{
+    border: none;
+    outline: none;
+}
+
+.search > input::placeholder{
+    color: #C6C8C7;
+    font-size: 1.2rem;
+}
+
+.search > img{
+    width: 25px;
+    margin-left: 20px;
+}
+
+.notification > img{
+    width: 40px;
+}
+
+
+
+
