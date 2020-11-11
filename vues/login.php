@@ -14,7 +14,7 @@
     <div class="register">
         <h2>Inscription</h2>
 
-        <form action="index.php?action=create-account" method="post">
+        <form action="index.php?action=register" method="post">
             <input type="text" name="login" placeholder="Pseudo" required="" autofocus="" />
             <input type="text" name="email" placeholder="Email" required="" autofocus="" />
             <input type="password" name="mdp" placeholder="Password" required="" autofocus="" />

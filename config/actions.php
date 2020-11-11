@@ -7,5 +7,5 @@ $listeDesActions = array(
     "404" => "vues/404.php",
     "connexion" => "traitement/connexion.php",
     "deconnexion" => "traitement/deconnexion.php",
-    "create-account" => "traitement/create-account.php",
+    "register" => "traitement/register.php",
 );
