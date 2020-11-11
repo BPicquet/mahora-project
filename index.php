@@ -50,6 +50,7 @@ ob_start(); // Je démarre le buffer de sortie : les données à afficher sont s
     <nav>
         <ul>
             <li><a href="index.php?action=accueil">Va voir la page 2</a></li>
+            <li><a href="index.php?action=page3">Introuvable ?</a></li>
 
             <?php
             if (isset($_SESSION['id'])) {
