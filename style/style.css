@@ -6,6 +6,7 @@ body{
 
 h1, h2, a{
     font-family: "Open Sans", sans-serif;
+    color: #1C2938;
 }
 
 p{
@@ -15,7 +16,7 @@ p{
 /* Header */
 header{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     margin: 20px 0 20px 40px;
 }
@@ -24,8 +25,13 @@ header h2{
     color: #6381E4;
 }
 
-logo-mahora{
-    width: 180px;
+header > div:nth-child(1){
+    display: flex;
+    align-items: center;
+}
+
+.logo-mahora{
+    width: 80px;
 }
 
 .search{
@@ -67,6 +73,78 @@ logo-mahora{
     width: 40px;
 }
 
+/* Login page */
+.login-page{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+    /* Login */
+.login{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 400px;
+    height: 300px;
+    border-radius: 20px;
+}
 
+.login > h2{
+    font-size: 30px;
+}
 
+.login > form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
+.login input{
+    font-size: 14px;
+    height: auto;
+    width: 270px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #B5B4B4;
+    border-radius: 8px;
+}
+
+.all-button{
+    background-color: #6381E4;
+    color: white;
+    border-radius: 20px;
+    border: 1px solid #6381E4;
+    padding: 5px 15px;
+    font-size: 16px;
+    box-shadow: 1px 2px grey;
+    cursor: pointer;
+    transition: 0.4s box-shadow;
+}
+
+.all-button:hover{
+    box-shadow: none;
+}
+
+.button-login{
+    margin-top: 20px
+}
+
+    /* Login: Logo */
+.login-page > img{
+    width: 100px;
+}
+
+    /* Register */
+.register{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 400px;
+    height: 500px;
+    border-radius: 20px;
+}
