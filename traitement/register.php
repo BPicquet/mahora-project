@@ -6,14 +6,11 @@ $email = $_POST['email'];
 
 if(!empty($pseudo) && !empty($password) && !empty($cpassword) && !empty($email)){
     if($password == $cpassword){
-        $query = $pdo->prepare('INSERT INTO user(id, login, mdp, email, remember, avatar) VALUES(:id, :login, :mdp, :email, :remember, :avatar)');
+        $query = $pdo->prepare('INSERT INTO user(login, mdp, email) VALUES(:login, :mdp, :email)');
         $query->execute(array(
-            'id' => '',
             'login' => $pseudo,
             'mdp' => $password,
-            'email' => $email,
-            'remember' => '',
-            'avatar' => ''));
+            'email' => $email));
         echo "Votre compte à été créé";
     } 
     else{

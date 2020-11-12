@@ -1,17 +1,9 @@
 <?php
 // Script login.php utilisé pour la connexion à la BD
-
-
-$host = localhost; // le chemin vers le serveur (localhost dans 99% des cas)
-
+$host = localhost;
 $db = mahora_db;
-// A l IUT, 3 possibilité prenomnom prenomnom1...
-
 $user = root;
-// A l iut prenom.nom
-
 $passwd = root;
-// A l iut, généré automatiquement
 
 try {
     // On essaie de créer une instance de PDO.
