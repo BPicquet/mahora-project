@@ -9,7 +9,7 @@ if(!empty($pseudo) && !empty($password) && !empty($cpassword) && !empty($email))
         $query = $pdo->prepare('INSERT INTO user(login, mdp, email) VALUES(:login, :mdp, :email)');
         $query->execute(array(
             'login' => $pseudo,
-            'mdp' => $password,
+            'mdp' => sha1($password),
             'email' => $email));
         echo "Votre compte à été créé";
     } 

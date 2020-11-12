@@ -5,5 +5,5 @@ unset($_SESSION['login']);
 
 //Redirection
 header("Location: index.php?action=login");
-    exit();
+exit();
 ?>
