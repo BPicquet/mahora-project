@@ -10,6 +10,10 @@ $query->execute([$id]);
 
 if($line = $query->fetch()) { 
    ?>
-    <div><?= $line["login"]?></div>
+    <div>
+        <div><?= $line["login"]?></div>
+        <div><?= $line["avatar"]?></div>
+        <div><?= $line["description"]?></div>
+    </div>
     <?php
 }

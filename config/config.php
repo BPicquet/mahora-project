@@ -1,7 +1,7 @@
 <?php
-define("HOST", "localhost");
-define("USER", "root");
-define("DB", "mahora_db");
-define("PASSWORD", "root");
+define("DB_HOST", "localhost");
+define("DB_USER", "root");
+define("DB_NAME", "mahora");
+define("DB_PASSWORD", "");
 
 
