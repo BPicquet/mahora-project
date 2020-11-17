@@ -187,3 +187,22 @@ header > div:nth-child(1){
 .container-404 > div > h3{
     margin-right: 40px;
 }
+
+/* Profile */
+.profile-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-info > h2{
+    margin: 0;
+    font-size: 30px;
+}
+
+.profile-info > P{
+    margin: 0;
+    font-size: 17px;
+    color: grey;
+}

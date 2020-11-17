@@ -9,7 +9,11 @@ $query = $pdo->prepare($sql);
 $query->execute([$id]);
 
 if($line = $query->fetch()) { 
-    ?>
-    <div><?= $line["login"]?></div>
+   ?>
+    <div class="profile-info">
+        <img href="<?= $line["avatar"]?>"/>
+        <h2><?= $line["login"]?></h2>
+        <p><?= $line["description"]?></p>
+    </div>
     <?php
 }
