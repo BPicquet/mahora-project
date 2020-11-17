@@ -10,7 +10,7 @@ if($line = $query->fetch()) {
     // sinon on crée les variables de session $_SESSION['id'] et $_SESSION['login'] et on va à la page d'accueil
     $_SESSION["id"]=$line["id"];
     $_SESSION["login"]=$line["login"];
-    header('Location: index.php?action=accueil&id='.$line['id']);
+    header('Location: index.php?action=profile&id='.$line['id']);
     exit();
 }
 else{
