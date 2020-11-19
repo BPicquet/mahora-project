@@ -196,6 +196,13 @@ header > div:nth-child(1){
     align-items: center;
 }
 
+.profile-info img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
 .profile-info > h2{
     margin: 0;
     font-size: 30px;
@@ -205,4 +212,32 @@ header > div:nth-child(1){
     margin: 0;
     font-size: 17px;
     color: grey;
+}
+
+.profile-info hr{
+    width: 150px;
+    border: 1px solid grey;
+    margin: 20px;
+}
+
+.my-post{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.div-post{
+    background-color: white;
+    width: 700px;
+    min-height: 180px;
+    margin: 20px 0;
+    border-radius: 20px;
+    -webkit-box-shadow: 0px 0px 14px -2px rgba(199,199,199,0.66); 
+    box-shadow: 0px 0px 14px -2px rgba(199,199,199,0.66);
+}
+
+.div-post p {
+    color: grey;
+    margin: 20px;
 }

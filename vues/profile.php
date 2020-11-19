@@ -11,30 +11,34 @@ $query->execute([$id]);
 if($line = $query->fetch()) { 
    ?>
     <div class="profile-info">
-        <img href="<?= $line["avatar"]?>"/>
+        <img src="<?= $line["avatar"]?>"/>
         <h2><?= $line["login"]?></h2>
         <p><?= $line["description"]?></p>
+        <hr>
     </div>
 
     <?php
 }
-/*?>
+?>
+
 <section class="my-post">
-    <h2>Mes publications</h2>
+    <div>
+        <h2>Mes publications</h2>
+    </div>
 
     <?php
-    $mypostsql = "SELECT * FROM ecrit WHERE id=idAuteur";
+    $mypostsql = "SELECT * FROM ecrit WHERE idAuteur= ?";
 
     $query = $pdo->prepare($mypostsql);
 
     $query->execute([$id]);
 
-    if($line = $query->fetch()) {
+    while($line = $query->fetch()) {
         ?>
-        <div>
+        <div class="div-post">
             <div>
                 <img src="" alt="">
-                <h2><?= $line["titre"]?></h2>
+                <h3><?= $line["titre"]?></h3>
             </div>
             <p><?= $line["contenu"]?></p>
         </div>
