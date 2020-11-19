@@ -18,7 +18,7 @@ if($line = $query->fetch()) {
 
     <?php
 }
-?>
+/*?>
 <section class="my-post">
     <h2>Mes publications</h2>
 
@@ -34,9 +34,9 @@ if($line = $query->fetch()) {
         <div>
             <div>
                 <img src="" alt="">
-                <h2></h2>
+                <h2><?= $line["titre"]?></h2>
             </div>
-            <p></p>
+            <p><?= $line["contenu"]?></p>
         </div>
         <?php
     }
