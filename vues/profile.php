@@ -15,5 +15,16 @@ if($line = $query->fetch()) {
         <h2><?= $line["login"]?></h2>
         <p><?= $line["description"]?></p>
     </div>
+
     <?php
+}
+
+$mypostsql = "SELECT * FROM ecrit WHERE id=idAuteur";
+
+$query = $pdo->prepare($mypostsql);
+
+$query->execute([$id]);
+
+if($line = $query->fetch()) {
+
 }
