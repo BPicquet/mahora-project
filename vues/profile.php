@@ -18,13 +18,28 @@ if($line = $query->fetch()) {
 
     <?php
 }
+?>
+<section class="my-post">
+    <h2>Mes publications</h2>
 
-$mypostsql = "SELECT * FROM ecrit WHERE id=idAuteur";
+    <?php
+    $mypostsql = "SELECT * FROM ecrit WHERE id=idAuteur";
 
-$query = $pdo->prepare($mypostsql);
+    $query = $pdo->prepare($mypostsql);
 
-$query->execute([$id]);
+    $query->execute([$id]);
 
-if($line = $query->fetch()) {
+    if($line = $query->fetch()) {
+        ?>
+        <div>
+            <div>
+                <img src="" alt="">
+                <h2></h2>
+            </div>
+            <p></p>
+        </div>
+        <?php
+    }
+?>
+</section>
 
-}
