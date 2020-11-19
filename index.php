@@ -26,8 +26,8 @@ ob_start(); // Je démarre le buffer de sortie : les données à afficher sont s
 <body>
     <header>
         <div>
-            <img class="logo-mahora" src="./style/img/logo-mahora.png" alt="">
-            <p>ahora</p>
+            <a href="index.php?action=accueil&id=<?php echo $_SESSION['id'] ?>"><img class="logo-mahora" src="./style/img/logo-mahora.png" alt=""></a>
+            <a href="index.php?action=accueil&id=<?php echo $_SESSION['id'] ?>"><p>ahora</p></a>
         </div>    
         <div class="search">
             <img src="./style/img/search.png" alt="">
@@ -46,15 +46,15 @@ ob_start(); // Je démarre le buffer de sortie : les données à afficher sont s
         }
     ?>
 
-    
     <nav>
         <ul>
-            <li><a href="index.php?action=accueil">Va voir la page 2</a></li>
-            <li><a href="index.php?action=page3">Introuvable ?</a></li>
-
             <?php
             if (isset($_SESSION['id'])) {
-                echo "<li>Bonjour " . $_SESSION['login'] . " <a href='index.php?action=deconnexion'>Deconnexion</a></li>";
+                echo "<li>Tu es connecté " . $_SESSION['login'] . " <a href='index.php?action=deconnexion'>Deconnexion</a></li>";
+            ?>
+                <li><a href="index.php?action=profile&id=<?php echo $_SESSION['id'] ?>"><?php echo $_SESSION['login'] ?></a></li>
+                <li><a href="index.php?action=page3">404 page</a></li>
+            <?php
             } else {
                 echo "<li><a href='index.php?action=login'>Login</a></li>";
             }

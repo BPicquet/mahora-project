@@ -12,6 +12,8 @@ if(!empty($pseudo) && !empty($password) && !empty($cpassword) && !empty($email))
             'mdp' => sha1($password),
             'email' => $email));
         echo "Votre compte à été créé";
+        header('Location: index.php?action=login');
+        exit();
     } 
     else{
         echo "Les mots de passes ne sont pas identiques";

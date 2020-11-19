@@ -27,7 +27,7 @@ if($line = $query->fetch()) {
     </div>
 
     <?php
-    $mypostsql = "SELECT * FROM ecrit WHERE idAuteur= ?";
+    $mypostsql = "SELECT * FROM ecrit INNER JOIN user ON ecrit.idAuteur = user.id WHERE idAuteur= ? ORDER BY dateEcrit DESC";
 
     $query = $pdo->prepare($mypostsql);
 
@@ -37,8 +37,8 @@ if($line = $query->fetch()) {
         ?>
         <div class="div-post">
             <div>
-                <img src="" alt="">
-                <h3><?= $line["titre"]?></h3>
+                <img src="<?= $line["avatar"]?>" alt="">
+                <h3><?= $line["login"]?></h3>
             </div>
             <p><?= $line["contenu"]?></p>
         </div>
