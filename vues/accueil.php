@@ -6,13 +6,13 @@ if(!isset($_SESSION["id"])) {
 
 
 ?>
-
+<section class="accueil-post">
 <?php
     $mypostsql = "SELECT * FROM ecrit INNER JOIN user ON ecrit.idAuteur = user.id  ORDER BY dateEcrit DESC";
 
     $query = $pdo->prepare($mypostsql);
 
-    $query->execute([$id]);
+    $query->execute([]);
 
     while($line = $query->fetch()) {
         ?>
@@ -26,3 +26,4 @@ if(!isset($_SESSION["id"])) {
         <?php
     }
 ?>
+</section>

@@ -225,7 +225,7 @@ header > div:nth-child(1){
     margin: 20px;
 }
 
-.my-post{
+.my-post, .accueil-post{
     display: flex;
     flex-direction: column;
     justify-content: center;
