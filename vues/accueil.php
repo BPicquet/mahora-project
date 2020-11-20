@@ -5,15 +5,13 @@ if(!isset($_SESSION["id"])) {
 }
 ?>
 <section class="accueil-post">
-<?php
-    $mypostsql = "SELECT * FROM ecrit INNER JOIN user ON ecrit.idAuteur = user.id  ORDER BY dateEcrit DESC";
-    $query = $pdo->prepare($mypostsql);
-    $query->execute([]);
-    ?>
-
     <div class="add-post div-post">
         <div>
             <?php
+            $addpostsql = "SELECT * FROM ecrit INNER JOIN user ON ecrit.idAuteur = user.id  ORDER BY dateEcrit DESC";
+            $query = $pdo->prepare($addpostsql);
+            $query->execute([]);
+
             if($line = $query->fetch()) {
                 ?>
                 <img src="<?= $line["avatar"]?>" alt="">
@@ -29,7 +27,11 @@ if(!isset($_SESSION["id"])) {
         </form>
     </div>
 
-    <?php
+<?php
+    $mypostsql = "SELECT * FROM ecrit INNER JOIN user ON ecrit.idAuteur = user.id  ORDER BY dateEcrit DESC";
+    $query = $pdo->prepare($mypostsql);
+    $query->execute([]);
+
     while($line = $query->fetch()) {
         ?>
         <div class="div-post">
