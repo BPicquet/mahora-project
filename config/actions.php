@@ -9,4 +9,5 @@ $listeDesActions = array(
     "connexion" => "traitement/connexion.php",
     "deconnexion" => "traitement/deconnexion.php",
     "register" => "traitement/register.php",
+    "add-post" => "traitement/add-post.php",
 );
