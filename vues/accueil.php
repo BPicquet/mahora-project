@@ -22,7 +22,7 @@ if(!isset($_SESSION["id"])) {
             }
             ?>
         </div>
-        <form action="index.php?action=add-post.php" method="post">
+        <form action="index.php?action=add-post" method="post">
             <input type="text" name="titre" placeholder="Titre" required="" autofocus="" />
             <input type="text" name="contenu" placeholder="Votre publication" required="" autofocus="" />
             <button class="all-button button-login" name="formsendpublication" type="submit">Publier</button>

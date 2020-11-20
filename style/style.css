@@ -272,5 +272,15 @@ header > div:nth-child(1){
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin: 0 40px 20px 40px;
+    margin: 0 60px 20px 40px;
+}
+
+.add-post form input{
+    border: none;
+    background: none;
+    height: 30px;
+    width: 100%;
+    margin-left: 20px;
+    margin-top: 25px;
+    font-size: 1.2rem;
 }
