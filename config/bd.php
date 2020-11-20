@@ -1,9 +1,9 @@
 <?php
 // Script login.php utilisé pour la connexion à la BD
 $host ="localhost";
-$db ="mahora_db";
+$db ="mahora";
 $user ="root";
-$passwd ="root";
+$passwd ="";
 
 try {
     // On essaie de créer une instance de PDO.
