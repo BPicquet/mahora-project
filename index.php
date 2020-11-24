@@ -25,10 +25,17 @@ ob_start(); // Je démarre le buffer de sortie : les données à afficher sont s
 
 <body>
     <header>
+    <?php
+    if($_SESSION['id']){
+        ?>
         <div>
-            <a href="index.php?action=accueil&id=<?php echo $_SESSION['id'] ?>"><img class="logo-mahora" src="./style/img/logo-mahora.png" alt=""></a>
-            <a href="index.php?action=accueil&id=<?php echo $_SESSION['id'] ?>"><p>ahora</p></a>
-        </div>    
+        <a href="index.php?action=accueil&id=<?= $_SESSION['id'] ?>"><img class="logo-mahora" src="./style/img/logo-mahora.png" alt=""></a>
+        <a href="index.php?action=accueil&id=<?= $_SESSION['id'] ?>"><p>ahora</p></a>
+        </div>
+        <?php 
+    }
+    ?>
+ 
         <div class="search">
             <img src="./style/img/search.png" alt="">
             <input type="text" placeholder="Rechercher">

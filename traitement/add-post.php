@@ -12,7 +12,7 @@
             'dateEcrit' => $date,
             'idAuteur' => $id,
             'idAmi' => $id));
-        header('Location: index.php?action=accueil');
+        header('Location: index.php?action=accueil&id='.$id);
         exit();   
     } 
     else{

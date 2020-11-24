@@ -1,4 +1,6 @@
 <?php
+$id = $_SESSION['id'];
+
 if(!isset($_SESSION["id"])) {
         // On n est pas connecté, il faut retourner à la page de login
         header("Location:index.php?action=login");
@@ -8,9 +10,9 @@ if(!isset($_SESSION["id"])) {
     <div class="add-post div-post">
         <div>
             <?php
-            $addpostsql = "SELECT * FROM ecrit INNER JOIN user ON ecrit.idAuteur = user.id  ORDER BY dateEcrit DESC";
+            $addpostsql = "SELECT * FROM user WHERE id= ?";
             $query = $pdo->prepare($addpostsql);
-            $query->execute([]);
+            $query->execute([$id]);
 
             if($line = $query->fetch()) {
                 ?>
@@ -23,6 +25,7 @@ if(!isset($_SESSION["id"])) {
         <form action="index.php?action=add-post" method="post">
             <input type="text" name="titre" placeholder="Titre" required="" autofocus="" />
             <input type="text" name="contenu" placeholder="Votre publication" required="" autofocus="" />
+            <hr style="width: 200px;">
             <button class="all-button button-login" name="formsendpublication" type="submit">Publier</button>
         </form>
     </div>
