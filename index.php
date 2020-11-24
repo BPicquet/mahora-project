@@ -32,10 +32,7 @@ ob_start(); // Je démarre le buffer de sortie : les données à afficher sont s
         <a href="index.php?action=accueil&id=<?= $_SESSION['id'] ?>"><img class="logo-mahora" src="./style/img/logo-mahora.png" alt=""></a>
         <a href="index.php?action=accueil&id=<?= $_SESSION['id'] ?>"><p>ahora</p></a>
         </div>
-        <?php 
-    }
-    ?>
- 
+
         <div class="search">
             <img src="./style/img/search.png" alt="">
             <input type="text" placeholder="Rechercher">
@@ -44,7 +41,32 @@ ob_start(); // Je démarre le buffer de sortie : les données à afficher sont s
         <div class="notification">
             <img src="./style/img/notification.png" alt="">
         </div>
+        <?php 
+    }
+    ?>
     </header>
+
+    <?php
+    if($_SESSION['id']){
+        ?>
+        <section class="menu-profile">
+            <div>
+                <img src="" alt="">
+                <h3></h3>
+                <p>Déconnexion</p>
+            </div>
+
+            <div class="friends-online">
+                <img src="" alt="">
+                <p>Ami en ligne</p>
+            </div>
+
+
+        </section>
+        <?php 
+    }
+    ?>
+
     <?php
         if (isset($_SESSION['info'])) {
             echo "<div>
