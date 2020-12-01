@@ -7,7 +7,6 @@ include("config/actions.php");
 session_start();
 ob_start(); // Je démarre le buffer de sortie : les données à afficher sont stockées
 
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -24,88 +23,91 @@ ob_start(); // Je démarre le buffer de sortie : les données à afficher sont s
 </head>
 
 <body>
-    <header>
-    <?php
-    if($_SESSION['id']){
-        ?>
-        <div>
-        <a href="index.php?action=accueil&id=<?= $_SESSION['id'] ?>"><img class="logo-mahora" src="./style/img/logo-mahora.png" alt=""></a>
-        <a href="index.php?action=accueil&id=<?= $_SESSION['id'] ?>"><p>ahora</p></a>
-        </div>
+<section class="index-menu">
+    <div class="header-container">
+        <header class="header-index">
+            <?php
+            if(isset($_SESSION['id'])){
+            ?>
+                <div>
+                    <a href="index.php?action=accueil&id=<?= $_SESSION['id'] ?>"><img class="logo-mahora" src="./style/img/logo-mahora.png" alt=""></a>
+                    <a href="index.php?action=accueil&id=<?= $_SESSION['id'] ?>"><p>ahora</p></a>
+                </div>
 
-        <div class="search">
-            <img src="./style/img/search.png" alt="">
-            <input type="text" placeholder="Rechercher">
-        </div>
+                <div class="search">
+                    <img src="./style/img/search.png" alt="">
+                    <input type="text" placeholder="Rechercher">
+                </div>
 
-        <div class="notification">
-            <img src="./style/img/notification.png" alt="">
-        </div>
-        <?php 
-    }
-    ?>
-    </header>
-
-    <?php
-    if($_SESSION['id']){
-        ?>
-        <section class="menu-profile">
-            <div>
-                <img src="" alt="">
-                <h3></h3>
-                <p>Déconnexion</p>
-            </div>
-
-            <div class="friends-online">
-                <img src="" alt="">
-                <p>Ami en ligne</p>
-            </div>
-
-
-        </section>
-        <?php 
-    }
-    ?>
-
-    <?php
+                <div class="notification">
+                    <img src="./style/img/notification.png" alt="">
+                </div>
+            <?php
+            }
+            ?>
+        </header>
+    
+    
+        <?php
         if (isset($_SESSION['info'])) {
             echo "<div>
             <strong>Information : </strong> " . $_SESSION['info'] . "</div>";
             unset($_SESSION['info']);
         }
-    ?>
-
-    <nav>
-        <ul>
-            <?php
-            if (isset($_SESSION['id'])) {
-                echo "<li>Tu es connecté " . $_SESSION['login'] . " <a href='index.php?action=deconnexion'>Deconnexion</a></li>";
-            ?>
-                <li><a href="index.php?action=profile&id=<?php echo $_SESSION['id'] ?>"><?php echo $_SESSION['login'] ?></a></li>
-                <li><a href="index.php?action=page3">404 page</a></li>
-            <?php
-            } else {
-                echo "<li><a href='index.php?action=login'>Login</a></li>";
-            }
-            ?>
-        </ul>
-    </nav>
-        <?php
-            // Quelle est l'action à faire ?
-            if (isset($_GET["action"])) {
-                $action = $_GET["action"];
-            } else {
-                $action = "accueil";
-            }
-
-            // Est ce que cette action existe dans la liste des actions
-            if (array_key_exists($action, $listeDesActions) == false) {
-                include("vues/404.php"); // NON : page 404
-            } else {
-                include($listeDesActions[$action]); // Oui, on la charge
-            }
-
-            ob_end_flush(); // Je ferme le buffer, je vide la mémoire et affiche tout ce qui doit l'être
         ?>
+
+        <?php
+        // Quelle est l'action à faire ?
+        if (isset($_GET["action"])) {
+            $action = $_GET["action"];
+        } else {
+            $action = "accueil";
+        }
+
+        // Est ce que cette action existe dans la liste des actions
+        if (array_key_exists($action, $listeDesActions) == false) {
+            include("vues/404.php"); // NON : page 404
+        } else {
+            include($listeDesActions[$action]); // Oui, on la charge
+        }
+
+        ob_end_flush(); // Je ferme le buffer, je vide la mémoire et affiche tout ce qui doit l'être
+        ?>
+    </div>
+
+    <div class="menu-profile">
+        <?php
+        if(isset($_SESSION['id'])){
+            ?>
+            <div class="info-user">
+                <img src="<?= $_SESSION["avatar"]?>" alt="">
+                <div>   
+                    <a href="index.php?action=profile&id=<?php echo $_SESSION['id'] ?>"><h3><?= $_SESSION['login'] ?></h3></a>
+                    <a href='index.php?action=deconnexion'>Deconnexion</a>
+                </div>
+            </div>
+
+            <div class="friends-online">
+                <p>Tous mes amis</p>
+                <?php
+                $friendsql = "SELECT * FROM user";
+                $query = $pdo->prepare($friendsql);
+                $query->execute([]);
+
+                while($line = $query->fetch()) {
+                ?>
+                    <div>
+                        <img src="<?= findImg($line["avatar"]) ?>" alt="">
+                        <a href="index.php?action=profile&id=<?php echo $line["id"] ?>"><h4><?= $line["login"] ?></h4></a>
+                    </div>
+                <?php
+                }
+                ?>
+            </div>
+        <?php 
+        }
+        ?>
+    </div>
+</section>    
 </body>
 </html>
