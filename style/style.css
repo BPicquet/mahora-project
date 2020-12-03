@@ -87,7 +87,7 @@ p{
 /* Login page */
 .login-page{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -278,6 +278,10 @@ p{
     text-decoration: none;
 }
 
+.button-invit{
+    margin-top: 20px;
+}
+
 /* Accueil page */
 .accueil-post > h2{
     margin-top: 80px;
@@ -322,7 +326,7 @@ p{
 .header-container{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
 }
 
 .info-user{
@@ -351,11 +355,11 @@ p{
     text-decoration: underline;
 }
 
-.friends-online{
+.friends-online, .invit-friends{
     margin-top: 40px;
 }
 
-.friends-online p{
+.friends-online p, .invit-friends p{
     padding: 10px 60px;
     margin-bottom: 30px;
     background-color: #6381E4;
@@ -363,13 +367,13 @@ p{
     border-radius: 10px;
 }
 
-.friends-online > div{
+.friends-online > div, .invit-friends > div{
     display: flex;
     align-items: center;
     margin: 10px;
 }
 
-.friends-online img{
+.friends-online img, .invit-friends img{
     width: 70px;
     height: 70px;
     border-radius: 50%;

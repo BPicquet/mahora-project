@@ -26,7 +26,7 @@ if(!isset($_SESSION["id"])) {
         <form action="index.php?action=add-post" method="post">
             <input type="text" name="titre" placeholder="Titre" required="" autofocus="" />
             <input type="text" name="contenu" placeholder="Votre publication" required="" autofocus="" />
-            <input type="hidden" name="profile-id" value="<?= $_GET=['id'] ?>">
+            <input type="hidden" name="profile-id" value="<?= $_GET['id'] ?>">
             <hr style="width: 200px;">
             <button class="all-button button-login" name="formsendpublication" type="submit">Publier</button>
         </form>
@@ -42,6 +42,7 @@ if(!isset($_SESSION["id"])) {
         }
     }
 
+    /* Changer pour afficher uniquement post ami */
     $mypostsql = "SELECT * FROM ecrit INNER JOIN user ON ecrit.idAuteur = user.id  ORDER BY dateEcrit DESC";
     $query = $pdo->prepare($mypostsql);
     $query->execute([]);
@@ -52,7 +53,7 @@ if(!isset($_SESSION["id"])) {
         <div class="div-post">
             <div>
                 <img src="<?= findImg($line["avatar"]) ?>" alt="">
-                <a href="index.php?action=profile&id=<?php echo $line["idAuteur"] ?>"><h3><?= $line["login"]?></h3></a>
+                <a href="index.php?action=profile&id=<?php echo $line["idAmi"] ?>"><h3><?= $line["login"]?></h3></a>
             </div>
             <p><?= $line["contenu"]?></p>
         </div>

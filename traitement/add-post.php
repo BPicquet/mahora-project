@@ -1,8 +1,7 @@
 <?php
     $titre = $_POST['titre'];
     $contenu = $_POST['contenu'];
-    $idAmi = $_POST['profileId'];
-
+    $idAmi = $_POST['profile-id'];
 
     if(!empty($titre) && !empty($contenu)){
         $query = $pdo->prepare('INSERT INTO ecrit(titre, contenu, dateEcrit, idAuteur, idAmi) VALUES(:titre, :contenu, :dateEcrit, :idAuteur, :idAmi)');

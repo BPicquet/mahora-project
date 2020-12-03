@@ -10,4 +10,6 @@ $listeDesActions = array(
     "deconnexion" => "traitement/deconnexion.php",
     "register" => "traitement/register.php",
     "add-post" => "traitement/add-post.php",
+    "add-friend" => "traitement/add-friend.php",
+    "accept-post" => "traitement/accept-friend.php",
 );

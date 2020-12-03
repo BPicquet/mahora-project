@@ -75,10 +75,11 @@ ob_start(); // Je démarre le buffer de sortie : les données à afficher sont s
         ?>
     </div>
 
-    <div class="menu-profile">
-        <?php
+    <?php
         if(isset($_SESSION['id'])){
-            ?>
+    ?>
+    <div class="menu-profile">
+
             <div class="info-user">
                 <img src="<?= $_SESSION["avatar"]?>" alt="">
                 <div>   
@@ -104,10 +105,11 @@ ob_start(); // Je démarre le buffer de sortie : les données à afficher sont s
                 }
                 ?>
             </div>
+        </div>
         <?php 
         }
         ?>
-    </div>
+
 </section>    
 </body>
 </html>
