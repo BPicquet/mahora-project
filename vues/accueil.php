@@ -7,6 +7,7 @@ if(!isset($_SESSION["id"])) {
 }
 ?>
 <section class="accueil-post">
+
     <h2>Ecrire sur l'accueil</h2>
     <div class="add-post div-post">
         <div>
@@ -18,7 +19,7 @@ if(!isset($_SESSION["id"])) {
             if($line = $query->fetch()) {
                 ?>
                 <img src="<?= $line["avatar"]?>" alt="">
-                <h3><?= $line["login"]?></h3>
+                <h3><?= $line["login"] ?></h3>
                 <?php
             }
             ?>
@@ -42,10 +43,18 @@ if(!isset($_SESSION["id"])) {
         }
     }
 
-    /* Changer pour afficher uniquement post ami */
-    $mypostsql = "SELECT * FROM ecrit INNER JOIN user ON ecrit.idAuteur = user.id  ORDER BY dateEcrit DESC";
+    /* Affichage ami mais pas affichage ses post, a changer et ajouter table user */
+    $mypostsql = "SELECT * FROM ecrit
+                    INNER JOIN lien ON idUtilisateur1 = ?
+                    WHERE idUtilisateur2 = ecrit.idAmi
+                    AND lien.etat = 'ami'
+                    UNION SELECT * FROM ecrit
+                    INNER JOIN lien ON idUtilisateur1 = ecrit.idAmi
+                    WHERE idUtilisateur2 = ?
+                    AND lien.etat = 'ami'";
+
     $query = $pdo->prepare($mypostsql);
-    $query->execute([]);
+    $query->execute([$_SESSION['id'], $_SESSION['id']]);
     ?>
     <?php
     while($line = $query->fetch()) {
@@ -53,7 +62,7 @@ if(!isset($_SESSION["id"])) {
         <div class="div-post">
             <div>
                 <img src="<?= findImg($line["avatar"]) ?>" alt="">
-                <a href="index.php?action=profile&id=<?php echo $line["idAmi"] ?>"><h3><?= $line["login"]?></h3></a>
+                <a href="index.php?action=profile&id=<?php echo $line["idAmi"] ?>"><h3><?= $lineLogin?></h3></a>
             </div>
             <p><?= $line["contenu"]?></p>
         </div>

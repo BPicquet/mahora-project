@@ -18,7 +18,8 @@ $sql = "SELECT * FROM user WHERE id=?";
 $query = $pdo->prepare($sql);
 $query->execute([$id]);
 if($line = $query->fetch()) { 
-?>
+    $userProfile = $line["login"];
+    ?>
     <div class="profile-info">
         <img src="<?= findImg($line["avatar"]) ?>" alt="">
         <h2><?= $line["login"]?></h2>
@@ -29,34 +30,42 @@ if($line = $query->fetch()) {
 <?php
 }
 $ok = false;
+$askFriend = false;
 
 if(!isset($_GET["id"]) || $_GET["id"]==$_SESSION["id"]){
     $id = $_SESSION["id"];
     $ok = true; 
 } else {
     $id = $_GET["id"];
-    $verifAmiSql = "SELECT * FROM lien WHERE etat='ami' 
-            AND ((idUtilisateur1=? AND idUtilisateur2=?) OR ((idUtilisateur1=? AND idUtilisateur2=?)))";
+    $verifAmiSql = "SELECT * FROM lien WHERE ((idUtilisateur1=? AND idUtilisateur2=?) OR ((idUtilisateur2=? AND idUtilisateur1=?)))";
 
     $query = $pdo->prepare($verifAmiSql);
     $query->execute([$_SESSION['id'], $_GET['id'], $_GET['id'], $_SESSION['id']]);
             
-    if(!isset($line["etat"])) {
-        $ok = false;
+    if($line = $query->fetch()) {
+        if(isset($line["etat"])){
+            $ok = true;
+            if($line["etat"] == "attente"){
+                $askFriend = true;
+            }
+        }
     }
 }
 
 if($ok == false) {
     echo "<h4>Vous n'êtes pas encore ami, vous ne pouvez voir son mur !</h4>";
     ?>
-
     <form action="index.php?action=add-friend" method="post">
         <input type="hidden" name="profile-id" value="<?= $_GET['id'] ?>">
         <button class="all-button button-invit" type="submit">Envoyer invitation</button>
     </form>
 
-    <?php   
-} else {
+    <?php
+}
+elseif($ok == true AND $askFriend == true){
+    echo "<h4>Demande envoyée, en attente d'une réponse de " . $userProfile . " !</h4>";
+}
+else {
     ?>
     <div class="add-post-container">
         <div>
@@ -90,7 +99,7 @@ if($ok == false) {
     <div class="my-post">
         <div>
             <?php
-            if($_SESSION[id] == $_GET['id']){
+            if($_SESSION['id'] == $_GET['id']){
                 echo "<h2>Mes publications</h2>";
             } else{
                 echo "<h2>Les publications de " . $loginProfile . "</h2>";
