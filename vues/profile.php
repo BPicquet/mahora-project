@@ -36,13 +36,13 @@ if(!isset($_GET["id"]) || $_GET["id"]==$_SESSION["id"]){
 } else {
     $id = $_GET["id"];
     $verifAmiSql = "SELECT * FROM lien WHERE etat='ami' 
-            AND ((idUtilisateur1=? AND idUtilisateur2=?) OR ((idUtilisateur1=? AND idUtilisateur2=?)))";
+            AND ((idUtilisateur1=? AND idUtilisateur2=?) OR ((idUtilisateur2=? AND idUtilisateur1=?)))";
 
     $query = $pdo->prepare($verifAmiSql);
     $query->execute([$_SESSION['id'], $_GET['id'], $_GET['id'], $_SESSION['id']]);
             
     if(!isset($line["etat"])) {
-        $ok = false;
+        $ok = true;
     }
 }
 
@@ -90,7 +90,7 @@ if($ok == false) {
     <div class="my-post">
         <div>
             <?php
-            if($_SESSION[id] == $_GET['id']){
+            if($_SESSION['id'] == $_GET['id']){
                 echo "<h2>Mes publications</h2>";
             } else{
                 echo "<h2>Les publications de " . $loginProfile . "</h2>";

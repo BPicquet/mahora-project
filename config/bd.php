@@ -3,7 +3,7 @@
 $host ="localhost";
 $db ="mahora_db";
 $user ="root";
-$passwd ="root";
+$passwd ="";
 
 try {
     // On essaie de créer une instance de PDO.
