@@ -36,7 +36,10 @@ ob_start(); // Je démarre le buffer de sortie : les données à afficher sont s
 
                 <div class="search">
                     <img src="./style/img/search.png" alt="">
-                    <input type="text" placeholder="Rechercher">
+                    <form action="index.php?action=search-friend" method="post">
+                        <input type="text" name="search" placeholder="Rechercher">
+                        <button type="submit">0</button>
+                    </form>
                 </div>
 
                 <div class="notification">
@@ -81,7 +84,7 @@ ob_start(); // Je démarre le buffer de sortie : les données à afficher sont s
     <div class="menu-profile">
 
             <div class="info-user">
-                <img src="<?= $_SESSION["avatar"]?>" alt="">
+                <img src="<?= findImg($_SESSION["avatar"])?>" alt="">
                 <div>   
                     <a href="index.php?action=profile&id=<?php echo $_SESSION['id'] ?>"><h3><?= $_SESSION['login'] ?></h3></a>
                     <a href='index.php?action=deconnexion'>Deconnexion</a>

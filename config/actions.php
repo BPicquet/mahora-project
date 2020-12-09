@@ -15,4 +15,5 @@ $listeDesActions = array(
     "accept-friend" => "traitement/accept-friend.php",
     "delete-friend" => "traitement/delete-friend.php",
     "search-friend" => "traitement/search-friend.php",
+    "delete-post" => "traitement/delete-post.php",
 );

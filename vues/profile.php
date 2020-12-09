@@ -37,7 +37,7 @@ if(!isset($_GET["id"]) || $_GET["id"]==$_SESSION["id"]){
     $ok = true; 
 } else {
     $id = $_GET["id"];
-    $verifAmiSql = "SELECT * FROM lien WHERE ((idUtilisateur1=? AND idUtilisateur2=?) OR ((idUtilisateur2=? AND idUtilisateur1=?)))";
+    $verifAmiSql = "SELECT * FROM lien WHERE ((idUtilisateur1=? AND idUtilisateur2=?) OR ((idUtilisateur1=? AND idUtilisateur2=?)))";
 
     $query = $pdo->prepare($verifAmiSql);
     $query->execute([$_SESSION['id'], $_GET['id'], $_GET['id'], $_SESSION['id']]);
@@ -81,7 +81,7 @@ else {
                 if($line = $query->fetch()) {
                     ?>
                     <?php $loginProfile = $line["login"]; ?>
-                    <img src="<?= $_SESSION["avatar"]?>" alt="">
+                    <img src="<?= findImg($_SESSION["avatar"])?>" alt="">
                     <h3><?= $_SESSION["login"]?></h3>
                     <?php
                 }
@@ -106,22 +106,64 @@ else {
             }
             ?>
         </div>
-
+        
         <?php
-        $mypostsql = "SELECT * FROM ecrit INNER JOIN user ON ecrit.idAuteur = user.id WHERE idAuteur= ? ORDER BY dateEcrit DESC";
+        /*$mypostsql = "SELECT e.*, u1.*, u2.* FROM ecrit e 
+                        INNER JOIN user u1 ON e.idAuteur = u1.id
+                        INNER JOIN user u2 ON e.idAmi = u2.id 
+                        WHERE e.idAmi= ? OR e.idAuteur = ?
+                        ORDER BY e.dateEcrit DESC";*/
+
+        $mypostsql =   "SELECT *, 
+                            auteur.avatar AS auteur_avatar, 
+                            ami.avatar AS ami_avatar,
+                            auteur.login AS auteur_login,
+                            ami.login AS ami_login
+                        FROM ecrit
+                        JOIN user auteur ON auteur.id = ecrit.idAuteur
+                        JOIN user ami ON ami.id = ecrit.idAmi
+                        WHERE idAuteur=? AND idAmi=?
+                        OR idAuteur=? AND idAmi=?
+                        OR idAuteur=? AND idAmi=?
+                        ORDER BY dateEcrit DESC";
 
         $query = $pdo->prepare($mypostsql);
 
-        $query->execute([$id]);
+        $query->execute([$_SESSION['id'], $_GET['id'], $_GET['id'], $_GET['id'], $_GET['id'], $_SESSION['id']]);
 
         while($line = $query->fetch()) {
             ?>
             <div class="div-post">
                 <div>
-                    <img src="<?= findImg($line["avatar"]) ?>" alt="">
-                    <h3><?= $line["login"]?></h3>
+                    <img src="<?= findImg($line["auteur_avatar"]) ?>" alt="">
+                    <?php
+                    if($line["idAuteur"] == $_SESSION['id'] AND $line["idAmi"] == $_SESSION["id"]){
+                        ?>
+                        <a href="index.php?action=profile&id=<?php echo $line["idAuteur"] ?>"><h3><?= $line["auteur_login"] ?></h3></a>
+                        <?php
+                    }else{
+                        ?>
+                        <a href="index.php?action=profile&id=<?php echo $line["idAuteur"] ?>"><h3><?= $line["auteur_login"] ?></h3></a>
+                        <p>=></p>
+                        <a href="index.php?action=profile&id=<?php echo $line["idAmi"] ?>"><h3><?= $line["ami_login"] ?></h3></a>
+                        <?php
+                    }
+                    ?>
                 </div>
                 <p><?= $line["contenu"]?></p>
+                <div class="like-delete-container">
+                    <div class="like-menu">
+                    </div>
+                <?php
+                if($line["idAuteur"] == $_SESSION['id']){
+                        ?>
+                        <form action="index.php?action=delete-post" method="post">
+                            <button>Supprimer</button>
+                        </form>
+                        <?php
+                    }
+                ?>
+                </div>
             </div>
             <?php
         }
