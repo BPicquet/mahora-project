@@ -11,7 +11,7 @@ if($line = $query->fetch()) {
     $_SESSION["id"]=$line["id"];
     $_SESSION["login"]=$line["login"];
     $_SESSION["avatar"]=$line["avatar"];
-    header('Location: index.php?action=profile&id='.$line['id']);
+    header('Location: index.php?action=accueil&id='.$line['id']);
     exit();
 }
 else{

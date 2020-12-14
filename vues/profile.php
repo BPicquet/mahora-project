@@ -18,7 +18,8 @@ $sql = "SELECT * FROM user WHERE id=?";
 $query = $pdo->prepare($sql);
 $query->execute([$id]);
 if($line = $query->fetch()) { 
-?>
+    $userProfile = $line["login"];
+    ?>
     <div class="profile-info">
         <img src="<?= findImg($line["avatar"]) ?>" alt="">
         <h2><?= $line["login"]?></h2>
@@ -29,6 +30,7 @@ if($line = $query->fetch()) {
 <?php
 }
 $ok = false;
+$askFriend = false;
 
 if(!isset($_GET["id"]) || $_GET["id"]==$_SESSION["id"]){
     $id = $_SESSION["id"];
@@ -49,14 +51,17 @@ if(!isset($_GET["id"]) || $_GET["id"]==$_SESSION["id"]){
 if($ok == false) {
     echo "<h4>Vous n'êtes pas encore ami, vous ne pouvez voir son mur !</h4>";
     ?>
-
     <form action="index.php?action=add-friend" method="post">
         <input type="hidden" name="profile-id" value="<?= $_GET['id'] ?>">
         <button class="all-button button-invit" type="submit">Envoyer invitation</button>
     </form>
 
-    <?php   
-} else {
+    <?php
+}
+elseif($ok == true AND $askFriend == true){
+    echo "<h4>Demande envoyée, en attente d'une réponse de " . $userProfile . " !</h4>";
+}
+else {
     ?>
     <div class="add-post-container">
         <div>

@@ -91,15 +91,59 @@ ob_start(); // Je démarre le buffer de sortie : les données à afficher sont s
             <div class="friends-online">
                 <p>Tous mes amis</p>
                 <?php
-                $friendsql = "SELECT * FROM user";
+                $friendsql = "SELECT * FROM user WHERE id 
+                                IN (SELECT user.id FROM user 
+                                INNER JOIN lien ON idUtilisateur1=user.id 
+                                AND etat='ami' AND idUtilisateur2=? 
+                                UNION SELECT user.id FROM user 
+                                INNER JOIN lien ON idUtilisateur2=user.id 
+                                AND etat='ami' AND idUtilisateur1=?)";
                 $query = $pdo->prepare($friendsql);
-                $query->execute([]);
+                $query->execute([$_SESSION['id'], $_SESSION['id']]);
 
                 while($line = $query->fetch()) {
                 ?>
                     <div>
                         <img src="<?= findImg($line["avatar"]) ?>" alt="">
-                        <a href="index.php?action=profile&id=<?php echo $line["id"] ?>"><h4><?= $line["login"] ?></h4></a>
+                        <div>
+                            <a href="index.php?action=profile&id=<?php echo $line["id"] ?>"><h4><?= $line["login"] ?></h4></a>
+                            <form action="index.php?action=delete-friend" method="post">
+                                <input type="hidden" name="delete-friend-id" value="<?= $line['id'] ?>">
+                                <button type="submit" class="button-friend">Supprimer</button>
+                            </form>
+                        </div>
+                    </div>
+                <?php
+                }
+                ?>
+            </div>
+
+            <div class="invit-friends">
+                <p>Invitations</p>
+                <?php
+                $invitesql = "SELECT * FROM user
+                                WHERE id IN(SELECT idUtilisateur1 FROM lien 
+                                WHERE idUtilisateur2=? AND etat='attente')";
+                $query = $pdo->prepare($invitesql);
+                $query->execute([$_SESSION['id']]);
+
+                while($line = $query->fetch()) {
+                ?>
+                    <div>
+                        <img src="<?= findImg($line["avatar"]) ?>" alt="">
+                        <div>   
+                            <a href="index.php?action=profile&id=<?php echo $line["id"] ?>"><h4><?= $line["login"] ?></h4></a>
+                            <div class="form-add-delete">
+                                <form action="index.php?action=accept-friend" method="post">
+                                    <input type="hidden" name="accept-friend-id" value="<?= $line['id'] ?>">
+                                    <button type="submit" class="button-friend">Accepter</button>
+                                </form>
+                                <form action="index.php?action=delete-friend" method="post">
+                                    <input type="hidden" name="delete-friend-id" value="<?= $line['id'] ?>">
+                                    <button type="submit" class="button-friend">Refuser</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 <?php
                 }

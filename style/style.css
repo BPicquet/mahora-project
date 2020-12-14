@@ -357,10 +357,13 @@ p{
 
 .friends-online, .invit-friends{
     margin-top: 40px;
+    text-transform: capitalize;
 }
 
 .friends-online p, .invit-friends p{
-    padding: 10px 60px;
+    padding: 10px 20px;
+    width: 200px;
+    text-align: center;
     margin-bottom: 30px;
     background-color: #6381E4;
     color: white;
@@ -380,4 +383,13 @@ p{
     margin: 10px 20px 0 0;
     -webkit-box-shadow: 0px 0px 14px -2px rgba(199,199,199,0.66); 
     box-shadow: 0px 0px 14px -2px rgba(199,199,199,0.66);
+}
+
+.form-add-delete{
+    display: flex;
+}
+
+.button-friend{
+    margin: -10px 5px 0 5px;
+    padding: 0;
 }

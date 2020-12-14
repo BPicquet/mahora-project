@@ -5,7 +5,7 @@
     $query->execute(array(
         'idUtilisateur1' => $_SESSION['id'],
         'idUtilisateur2' => $idProfile,
-        'etat' => "ami"));
+        'etat' => "attente"));
     header('Location: index.php?action=profile&id=' . $idProfile);
     exit();   
 ?>
