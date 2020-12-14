@@ -91,6 +91,7 @@ else {
                 <input type="text" name="titre" placeholder="Titre" required="" autofocus="" />
                 <input type="text" name="contenu" placeholder="Votre publication" required="" autofocus="" />
                 <input type="hidden" name="profile-id" value="<?= $_GET['id'] ?>">
+                <input type="file" name="add-img" class="button-add-img">
                 <hr style="width: 200px;">
                 <button class="all-button button-login" name="formsendpublication" type="submit">Publier</button>
             </form>
@@ -108,13 +109,9 @@ else {
         </div>
         
         <?php
-        /*$mypostsql = "SELECT e.*, u1.*, u2.* FROM ecrit e 
-                        INNER JOIN user u1 ON e.idAuteur = u1.id
-                        INNER JOIN user u2 ON e.idAmi = u2.id 
-                        WHERE e.idAmi= ? OR e.idAuteur = ?
-                        ORDER BY e.dateEcrit DESC";*/
-
-        $mypostsql =   "SELECT *, 
+        
+        $mypostsql =   "SELECT *,
+                            ecrit.id, 
                             auteur.avatar AS auteur_avatar, 
                             ami.avatar AS ami_avatar,
                             auteur.login AS auteur_login,
@@ -125,11 +122,11 @@ else {
                         WHERE idAuteur=? AND idAmi=?
                         OR idAuteur=? AND idAmi=?
                         OR idAuteur=? AND idAmi=?
-                        ORDER BY dateEcrit DESC";
+                        ORDER BY dateEcrit DESC"; 
 
         $query = $pdo->prepare($mypostsql);
 
-        $query->execute([$_SESSION['id'], $_GET['id'], $_GET['id'], $_GET['id'], $_GET['id'], $_SESSION['id']]);
+        $query->execute([$_SESSION['id'], $_GET['id'], $_GET['id'], $_GET['id'], $_GET['id'], $_SESSION['id']]); 
 
         while($line = $query->fetch()) {
             ?>
@@ -144,21 +141,27 @@ else {
                     }else{
                         ?>
                         <a href="index.php?action=profile&id=<?php echo $line["idAuteur"] ?>"><h3><?= $line["auteur_login"] ?></h3></a>
-                        <p>=></p>
-                        <a href="index.php?action=profile&id=<?php echo $line["idAmi"] ?>"><h3><?= $line["ami_login"] ?></h3></a>
+                        <p>→</p>
+                        <a href="index.php?action=profile&id=<?php echo $line["idAmi"] ?>"><h3>&nbsp<?= $line["ami_login"] ?></h3></a>
                         <?php
                     }
                     ?>
                 </div>
                 <p><?= $line["contenu"]?></p>
+                <img src=<?= $line['image'] ?> alt="">
                 <div class="like-delete-container">
                     <div class="like-menu">
+                        <form action="index.php?action=like-post" method="post">
+                            <input type="hidden" name="like-post-id" value="<?= $line['id'] ?>">
+                            <button type="submit" class="button-like-post">Aimer</button>
+                        </form>
                     </div>
                 <?php
                 if($line["idAuteur"] == $_SESSION['id']){
                         ?>
                         <form action="index.php?action=delete-post" method="post">
-                            <button>Supprimer</button>
+                            <input type="hidden" name="delete-post-id" value="<?= $line['id'] ?>">
+                            <button type="submit" class="button-delete-post">Supprimer</button>
                         </form>
                         <?php
                     }

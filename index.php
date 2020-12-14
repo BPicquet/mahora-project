@@ -35,15 +35,10 @@ ob_start(); // Je démarre le buffer de sortie : les données à afficher sont s
                 </div>
 
                 <div class="search">
-                    <img src="./style/img/search.png" alt="">
                     <form action="index.php?action=search-friend" method="post">
                         <input type="text" name="search" placeholder="Rechercher">
-                        <button type="submit">0</button>
+                        <button type="submit"><img src="./style/img/search.png" alt=""></button>
                     </form>
-                </div>
-
-                <div class="notification">
-                    <img src="./style/img/notification.png" alt="">
                 </div>
             <?php
             }
@@ -79,10 +74,9 @@ ob_start(); // Je démarre le buffer de sortie : les données à afficher sont s
     </div>
 
     <?php
-        if(isset($_SESSION['id'])){
+    if(isset($_SESSION['id'])){
     ?>
     <div class="menu-profile">
-
             <div class="info-user">
                 <img src="<?= findImg($_SESSION["avatar"])?>" alt="">
                 <div>   
@@ -112,7 +106,7 @@ ob_start(); // Je démarre le buffer de sortie : les données à afficher sont s
                             <a href="index.php?action=profile&id=<?php echo $line["id"] ?>"><h4><?= $line["login"] ?></h4></a>
                             <form action="index.php?action=delete-friend" method="post">
                                 <input type="hidden" name="delete-friend-id" value="<?= $line['id'] ?>">
-                                <button type="submit" class="button-friend">Supprimer</button>
+                                <button type="submit" class="delete-friend">Supprimer</button>
                             </form>
                         </div>
                     </div>
@@ -139,11 +133,11 @@ ob_start(); // Je démarre le buffer de sortie : les données à afficher sont s
                             <div class="form-add-delete">
                                 <form action="index.php?action=accept-friend" method="post">
                                     <input type="hidden" name="accept-friend-id" value="<?= $line['id'] ?>">
-                                    <button type="submit" class="button-friend">Accepter</button>
+                                    <button type="submit" class="button-accept-friend">Accepter</button>
                                 </form>
                                 <form action="index.php?action=delete-friend" method="post">
                                     <input type="hidden" name="delete-friend-id" value="<?= $line['id'] ?>">
-                                    <button type="submit" class="button-friend">Refuser</button>
+                                    <button type="submit" class="button-delete-friend">Refuser</button>
                                 </form>
                             </div>
                         </div>
@@ -153,9 +147,9 @@ ob_start(); // Je démarre le buffer de sortie : les données à afficher sont s
                 ?>
             </div>
         </div>
-        <?php 
-        }
-        ?>
+    <?php 
+    }
+    ?>
 
 </section>    
 </body>
