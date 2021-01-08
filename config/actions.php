@@ -6,7 +6,7 @@ $listeDesActions = array(
     "login" => "vues/login.php",
     "404" => "vues/404.php",
     "profile" => "vues/profile.php",
-    "search" => "search/profile.php",
+    "search" => "vues/search.php",
     "connexion" => "traitement/connexion.php",
     "deconnexion" => "traitement/deconnexion.php",
     "register" => "traitement/register.php",
@@ -15,4 +15,6 @@ $listeDesActions = array(
     "accept-friend" => "traitement/accept-friend.php",
     "delete-friend" => "traitement/delete-friend.php",
     "search-friend" => "traitement/search-friend.php",
+    "delete-post" => "traitement/delete-post.php",
+    "like-post" => "traitement/like-post.php"
 );

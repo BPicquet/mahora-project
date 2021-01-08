@@ -20,8 +20,10 @@ p{
 /* Header */
 .header-index{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
+    width: 100%;
+    padding: 0 30px;
     margin: 20px 0 20px 40px;
     position: sticky;
     top: 0;
@@ -35,6 +37,7 @@ p{
 .header-index > div:nth-child(1){
     display: flex;
     align-items: center;
+    justify-content: space-between;
     font-size: 20px;
     font-weight: bold;
 }
@@ -47,41 +50,51 @@ p{
     background-color: white;
     border-radius: 10px;
     width: 320px;
-    padding-right: 10px;
     height: 40px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin: 0 150px;
+    margin: 0 0 0 150px;
 }
 
-.search > input{
+.search > form{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search button{
+    height: 40px;
+    width: 40px;
+    border-radius: 10px;
+    background-color: #6381E4;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.search input{
     border: none;
     background: none;
     height: 30px;
-    width: 320px;
+    width: 220px;
     margin-left: 20px;
     margin-top: 5px;
     font-size: 1.2rem;
 }
 
-.search > input:focus{
+.search input:focus{
     border: none;
     outline: none;
 }
 
-.search > input::placeholder{
+.search input::placeholder{
     color: #C6C8C7;
     font-size: 1.2rem;
 }
 
-.search > img{
+.search img{
     width: 25px;
-    margin-left: 20px;
-}
-
-.notification > img{
-    width: 40px;
 }
 
 /* Login page */
@@ -241,7 +254,7 @@ p{
 .div-post{
     background-color: white;
     width: 700px;
-    min-height: 180px;
+    min-height: 200px;
     margin: 20px 0;
     border-radius: 20px;
     -webkit-box-shadow: 0px 0px 14px -2px rgba(199,199,199,0.66); 
@@ -250,7 +263,7 @@ p{
 
 .div-post p {
     color: grey;
-    margin: 0 20px 20px 40px;
+    margin: 0 20px 20px 100px;
     text-transform: capitalize;
 }
 
@@ -282,6 +295,29 @@ p{
     margin-top: 20px;
 }
 
+.like-delete-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 50px 20px 50px;
+}
+
+.button-delete-post{
+    border: none;
+    background-color: white;
+    color: red;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.button-like-post{
+    border: none;
+    background-color: white;
+    color:#6381E4;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
 /* Accueil page */
 .accueil-post > h2{
     margin-top: 80px;
@@ -300,8 +336,8 @@ p{
     height: 30px;
     width: 100%;
     margin-left: 20px;
-    margin-top: 25px;
-    font-size: 1.2rem;
+    margin-top: 20px;
+    font-size: 1rem;
 }
 
 /* Index.php */
@@ -345,7 +381,6 @@ p{
     box-shadow: 0px 0px 14px -2px rgba(199,199,199,0.66);
 }
 
-
 .info-user h3{
     text-transform: uppercase;
     margin: 0;
@@ -353,6 +388,10 @@ p{
 
 .info-user > div:nth-child(1) > a:nth-child(1){
     text-decoration: underline;
+}
+
+.invit-friends{
+    margin-bottom: 20px;
 }
 
 .friends-online, .invit-friends{
@@ -368,6 +407,10 @@ p{
     background-color: #6381E4;
     color: white;
     border-radius: 10px;
+}
+
+.friends-online h4, .invit-friends h4{
+    margin: 0 0 5px 0;
 }
 
 .friends-online > div, .invit-friends > div{
@@ -392,4 +435,43 @@ p{
 .button-friend{
     margin: -10px 5px 0 5px;
     padding: 0;
+}
+
+.delete-friend, .button-delete-friend{
+    border: none;
+    background-color: white;
+    color: red;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.button-accept-friend{
+    border: none;
+    background-color: white;
+    color: #6381E4;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+/* Search page */
+.search-user{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.search-user img{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin: 20px;
+    -webkit-box-shadow: 0px 0px 14px -2px rgba(199,199,199,0.66); 
+    box-shadow: 0px 0px 14px -2px rgba(199,199,199,0.66);
+}
+
+.search-user-content{
+    display: flex;
+    align-items: center;
+    text-transform: capitalize;
 }
